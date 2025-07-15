@@ -1,5 +1,6 @@
-import { Link } from 'inferno-router'
 import '../../assets/css/Auth.css'
+import Logo from '../../assets/images/favicon.png'
+import { Link } from 'inferno-router'
 
 const apiUrl = "http://localhost:5051/api/Auth";
 
@@ -39,8 +40,8 @@ export function SignInComponent() {
     const handleSubmission = (e) => {
         e.preventDefault()
         var formData = new FormData(e.target)
-        var username = formData.get('Username');
-        var password = formData.get('Password');
+        var username = formData.get('Username').trim();
+        var password = formData.get('Password').trim();
         var data = { Username: username, Password: password };
 
         if (!username) {
@@ -91,7 +92,12 @@ export function SignInComponent() {
     }
     return (
         <div className="px-4 py-5 text-center" >
-            <span className='fs-3 fw-semibold'>EdTech Quiz App</span>
+            <div className='d-flex justify-content-center align-items-center gap-2'>
+                <img src={Logo} alt="image here" />
+                <span className='fs-3 fw-semibold '>
+                    EdTech Quiz App
+                </span>
+            </div>
             <div className="px-sm-5 pb-3">
                 <form className='container' onSubmit={handleSubmission}>
                     <p className='fs-4'>Signin</p>
@@ -132,9 +138,9 @@ export function SignUpComponent() {
     const handleSubmission = (e) => {
         e.preventDefault()
         var formData = new FormData(e.target)
-        var username = formData.get('Username')
-        var email = formData.get('Email')
-        var password = formData.get('Password')
+        var username = formData.get('Username').trim()
+        var email = formData.get('Email').trim()
+        var password = formData.get('Password').trim()
 
         var data = {
             Username: username,
@@ -198,7 +204,12 @@ export function SignUpComponent() {
     }
     return (
         <div className="p-5 text-center" >
-            <span className='fs-3 fw-semibold'>EdTech Quiz App</span>
+            <div className='d-flex justify-content-center align-items-center gap-2'>
+                <img src={Logo} alt="image here" />
+                <span className='fs-3 fw-semibold '>
+                    EdTech Quiz App
+                </span>
+            </div>
             <div className="px-sm-5 pb-3">
                 <form onSubmit={handleSubmission}>
                     <p className='fs-4'>Signup</p>
