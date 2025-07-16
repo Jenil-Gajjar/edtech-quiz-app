@@ -16,7 +16,7 @@ export default class AdminLayout extends Component {
         }
     }
     mappings = {
-        'dasboard': {
+        'dashboard': {
             component: <Question />,
             icon: <i class="bi bi-grid fs-5"></i>,
             text: 'Dasboard'

@@ -1,6 +1,11 @@
 import '../../assets/css/Auth.css'
+
 import Logo from '../../assets/images/favicon.png'
+import CookieService from '../../services/CookieService';
+import JwtService from '../../services/JwtService';
+
 import { Link } from 'inferno-router'
+import { Admin } from '../../helper/Constants';
 
 const apiUrl = "http://localhost:5051/api/Auth";
 
@@ -70,9 +75,8 @@ export function SignInComponent() {
             },
             body: JSON.stringify(data)
         })
-            .then(response => {
-                const data = response.json();
-                console.log(data)
+            .then(async response => {
+                const data = await response.json();
                 return ({
                     status: response.status,
                     data: data
@@ -80,7 +84,16 @@ export function SignInComponent() {
             })
             .then(({ status, data }) => {
                 if (status === 200) {
-                    window.location.replace('/dashboard')
+                    // window.location.replace('/dashboard')
+                    const jwtToken = data.data;
+                    CookieService.setAuthCookie(jwtToken)
+                    const userdata = JwtService.decodeToken(jwtToken)
+                    if (userdata.role == Admin) {
+                        window.location.replace("/admin/dashboard")
+                    } else {
+                        window.location.replace("/user/dashboard")
+                    }
+
                 } else {
                     ErrorHandler('PasswordErrorMessage', data.message || 'Invalid username or password');
                 }
@@ -182,14 +195,16 @@ export function SignUpComponent() {
             },
             body: JSON.stringify(data)
         })
-            .then(response => {
-                const data = response.json();
+            .then(async response => {
+                const data = await response.json();
                 return ({
                     status: response.status,
                     data: data,
                 });
             })
             .then(({ status, data }) => {
+                console.log(status)
+                console.log(data)
                 if (status === 201 && data.isSuccess) {
                     window.location.replace('/sign-in')
                 }

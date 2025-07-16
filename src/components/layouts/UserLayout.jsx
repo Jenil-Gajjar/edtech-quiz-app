@@ -17,6 +17,11 @@ export default class UserLayout extends Component {
         };
     }
     mappings = {
+        'dashboard': {
+            component: <Quiz />,
+            icon: <i class="bi bi-grid fs-5"></i>,
+            text: 'Dasboard'
+        },
         'user-quiz': {
             component: <Quiz />,
             icon: <i class="bi bi-clipboard-check fs-5"></i>,
@@ -50,7 +55,7 @@ export default class UserLayout extends Component {
                     <div className="col-sm-4 col-md-4 col-lg-3 col-xl-2 sidebar pt-3  ">
                         <div className='d-flex justify-content-start align-items-center gap-2  '>
                             <img src={Logo} alt="" sizes="" srcset="" style="width:40px;height:40px;" />
-                            <h3 className='fs-3'>Quiz App User</h3>
+                            <h3 className='fs-3'>Quiz App</h3>
                         </div>
                         <ul className='list-unstyled'>
                             {

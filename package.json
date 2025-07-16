@@ -8,7 +8,10 @@
     "inferno": "^9.0.3",
     "inferno-router": "^9.0.3",
     "inferno-scripts": "8.0.20",
-    "web-vitals": "^3.5.2"
+    "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
+    "web-vitals": "^3.5.2",
+    "webpack-dev-server": "^5.2.1"
   },
   "scripts": {
     "start": "inferno-scripts start",
@@ -34,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^6.0.1"
   }
 }
