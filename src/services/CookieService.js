@@ -1,15 +1,17 @@
 import Cookies from "js-cookie";
-export default class CookieService {
-  static setAuthCookie(token) {
+import { JWT_TOKEN_STORAGE_KEY } from "../helper/Constants/Constants.js";
+const CookieService = {
+  setAuthCookie(token) {
     const defaultOptions = {
       expires: 1,
     };
-    Cookies.set("AuthToken", token, defaultOptions);
-  }
-  static getAuthCookie() {
-    Cookies.get("AuthToken");
-  }
-  static removeAuthCookie() {
-    Cookies.remove("AuthToken");
-  }
-}
+    Cookies.set(JWT_TOKEN_STORAGE_KEY, token, defaultOptions);
+  },
+  getAuthCookie() {
+    return Cookies.get(JWT_TOKEN_STORAGE_KEY);
+  },
+  removeAuthCookie() {
+    Cookies.remove(JWT_TOKEN_STORAGE_KEY);
+  },
+};
+export default CookieService;

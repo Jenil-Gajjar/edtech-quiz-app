@@ -1,13 +1,13 @@
 import AdminLayout from "./components/layouts/AdminLayout.jsx";
 import UserLayout from "./components/layouts/UserLayout.jsx";
-import PageNotFound from "./components/shared/PageNotFound.jsx";
+import ErrorPage from "./components/shared/ErrorPage.jsx";
 
 import { BrowserRouter, Route, Switch } from "inferno-router";
 import {
   Auth,
   SignInComponent,
   SignUpComponent,
-} from "./components/auth/Auth.jsx";
+} from "./components/authentication/Authentication.jsx";
 
 export default function App() {
   return (
@@ -26,7 +26,7 @@ export default function App() {
           </Route>
           <Route path="/admin/:component" component={AdminLayout} />
           <Route path="/user/:component" component={UserLayout} />
-          <Route path="*" component={PageNotFound} />
+          <Route path="*" component={ErrorPage} />
         </Switch>
       </div>
     </BrowserRouter>

@@ -4,12 +4,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "history": "^5.3.0",
+    "http-status": "^2.1.0",
     "inferno": "^9.0.3",
     "inferno-router": "^9.0.3",
     "inferno-scripts": "8.0.20",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
+    "toastify-js": "^1.12.0",
     "web-vitals": "^3.5.2",
     "webpack-dev-server": "^5.2.1"
   },

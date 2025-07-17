@@ -1,0 +1,66 @@
+:root {
+  --purple: #7267ef;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.Auth-Container,
+.Error-Page-Wrapper {
+  background-color: var(--purple);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Auth-InputGroup-Text,
+.Auth-Input {
+  font-size: 1.2rem;
+}
+.Auth-btn {
+  background-color: var(--purple);
+  color: whitesmoke;
+  border: 0;
+  font-size: 1.23rem;
+  padding: 10px 15px;
+  border-radius: 0.5rem;
+}
+.Pointer {
+  cursor: pointer;
+}
+
+.Input-Group-Parent {
+  max-width: 400px;
+  text-align: justify;
+  padding: 0.5rem;
+}
+.Error-Card {
+  max-width: 20rem;
+  max-height: 20rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 5%;
+}
+.Error-Card-Text {
+  color: var(--purple);
+  text-decoration: none;
+}
+.sidebar {
+  background-color: var(--purple);
+  height: 100vh;
+  padding-left: 1.2rem;
+  color: white;
+}
+@media screen and (max-width: 576px) {
+  .sidebar {
+    height: auto;
+  }
+}

@@ -1,11 +1,12 @@
-import '../../assets/css/Auth.css'
+import '../../assets/css/styles.css'
 
 import Logo from '../../assets/images/favicon.png'
-import CookieService from '../../services/CookieService';
-import JwtService from '../../services/JwtService';
-
+import CookieService from '../../services/CookieService.js';
+import JwtService from '../../services/JwtService.js';
 import { Link } from 'inferno-router'
-import { Admin } from '../../helper/Constants';
+import { Admin, success, User } from '../../helper/Constants/Constants.js';
+import ToastrService from '../../services/ToastrService';
+import AuthService from '../../services/AuthorizationService.js';
 
 const apiUrl = "http://localhost:5051/api/Auth";
 
@@ -28,20 +29,27 @@ export function Auth({ children }) {
     )
 }
 
-function ErrorHandler(id, msg) {
-    document.getElementById(id).innerText = msg;
+function ErrorHandler(id, message) {
+    document.getElementById(id).innerText = message;
 }
 
-function ValidationHandler(id, msg, regex, event) {
+function ValidationHandler(id, message, regex, event) {
     if (!regex.test(event.target.value)) {
-        ErrorHandler(id, msg)
+        ErrorHandler(id, message)
     } else {
         ErrorHandler(id, null)
     }
 }
 
 export function SignInComponent() {
-
+    if (AuthService.isAuthenticated()) {
+        if (AuthService.hasRole(Admin)) {
+            window.location.replace('/admin/dashboard')
+        } else if (AuthService.hasRole(User)) {
+            window.location.replace('/user/dashboard')
+        }
+    }
+    ToastrService.displayToast()
     const handleSubmission = (e) => {
         e.preventDefault()
         var formData = new FormData(e.target)
@@ -84,14 +92,18 @@ export function SignInComponent() {
             })
             .then(({ status, data }) => {
                 if (status === 200) {
-                    // window.location.replace('/dashboard')
                     const jwtToken = data.data;
                     CookieService.setAuthCookie(jwtToken)
                     const userdata = JwtService.decodeToken(jwtToken)
-                    if (userdata.role == Admin) {
-                        window.location.replace("/admin/dashboard")
+
+                    ToastrService.setToast(success, 'Login Successfull.')
+
+                    if (userdata.role === Admin) {
+                        window.location.replace('/admin/dashboard')
+                    } else if (userdata.role === User) {
+                        window.location.replace('/user/dashboard')
                     } else {
-                        window.location.replace("/user/dashboard")
+                        window.location.replace('/Not-Found')
                     }
 
                 } else {
@@ -121,7 +133,7 @@ export function SignInComponent() {
                                 onInput={(event) => { ValidationHandler('UsernameErrorMessage', UsernameErrorMessage, UsernameRegex, event) }}
                             />
                         </div>
-                        <span className='text-danger text-start' id='UsernameErrorMessage' ></span>
+                        <span className='text-danger text-start' id='UsernameErrorMessage'></span>
                     </div>
 
                     <div className='Input-Group-Parent'>
@@ -147,7 +159,13 @@ export function SignInComponent() {
 }
 
 export function SignUpComponent() {
-
+    if (AuthService.isAuthenticated()) {
+        if (AuthService.hasRole(Admin)) {
+            window.location.replace('/admin/dashboard')
+        } else if (AuthService.hasRole(User)) {
+            window.location.replace('/user/dashboard')
+        }
+    }
     const handleSubmission = (e) => {
         e.preventDefault()
         var formData = new FormData(e.target)
@@ -203,9 +221,10 @@ export function SignUpComponent() {
                 });
             })
             .then(({ status, data }) => {
-                console.log(status)
-                console.log(data)
                 if (status === 201 && data.isSuccess) {
+
+                    ToastrService.setToast(success, 'Register Successfull.')
+
                     window.location.replace('/sign-in')
                 }
                 else {

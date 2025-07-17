@@ -1,20 +1,38 @@
-import '../../assets/css/Dashboard.css'
+import '../../assets/css/styles.css'
 
 import Logo from '../../assets/images/favicon-light.png'
-
+import ToastrService from '../../services/ToastrService.js';
+import AuthService from '../../services/AuthorizationService.js';
+import ErrorPage from '../shared/ErrorPage.jsx';
+import status from 'http-status';
 
 import { Component } from 'inferno';
-import { Link, Redirect } from 'inferno-router';
+import { Link } from 'inferno-router';
 import { Quiz } from '../quiz/Quiz.jsx';
+import { success, User } from '../../helper/Constants/Constants.js';
 
 
 export default class UserLayout extends Component {
     constructor(props) {
         super(props);
+        if (!AuthService.isAuthenticated()) {
+            window.location.replace('/sign-in')
+            return;
+        }
+        if (!AuthService.hasRole(User)) {
+            this.state = {
+                activeComponent: null,
+                error: { status: status.FORBIDDEN, message: status[status.FORBIDDEN] }
+            };
+            return;
+        }
+
         const component = props.match?.params?.component;
         this.state = {
             activeComponent: component && component in this.mappings ? component : null,
+            error: null
         };
+        ToastrService.displayToast()
     }
     mappings = {
         'dashboard': {
@@ -27,13 +45,13 @@ export default class UserLayout extends Component {
             icon: <i class="bi bi-clipboard-check fs-5"></i>,
             text: 'Quiz'
         },
-
         'logout': {
-            component: <Quiz />,
+            component: null,
             icon: <i class="bi bi-box-arrow-left fs-5"></i>,
             text: 'Logout'
         }
     };
+
 
     handleNavigation = (component) => {
         this.setState({ activeComponent: component });
@@ -41,14 +59,34 @@ export default class UserLayout extends Component {
     };
 
     renderContent = () => {
-        const component = this.props.match?.params?.component || 'dashboard';
+        const { activeComponent } = this.state;
+        const component = this.props.match?.params?.component || activeComponent || 'dashboard';
+
+        if (component == 'logout') {
+            ToastrService.setToast(success, 'Logout Successfull.')
+            AuthService.logout()
+            window.location.replace('/sign-in')
+        }
         if (!(component in this.mappings)) {
-            return <Redirect to="/Not-Found" />;
+            this.setState({
+                activeComponent: null,
+                error: { status: status.NOT_FOUND, message: status[status.NOT_FOUND] }
+
+            })
+            return;
         }
         return this.mappings[component]?.component || null;
     };
 
     render() {
+        if (this.state.error) {
+            const { status, message } = this.state.error;
+            return (
+                <ErrorPage
+                    status={status}
+                    message={message} />
+            )
+        }
         return (
             <div className="main-layout container-fluid">
                 <div className="row ">
