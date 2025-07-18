@@ -1,8 +1,8 @@
 import '../../assets/css/styles.css'
 
 import Logo from '../../assets/images/favicon-light.png'
-import ToastrService from '../../services/ToastrService.js';
-import AuthService from '../../services/AuthorizationService.js';
+import AuthService from '../../services//Authorization/AuthorizationService.js';
+import ToastrService from '../../services/Toastr/ToastrService.js';
 import ErrorPage from '../shared/ErrorPage.jsx';
 import status from 'http-status';
 
@@ -11,6 +11,7 @@ import { Question } from '../question/Question.jsx';
 import { Quiz } from '../quiz/Quiz.jsx';
 import { Component } from 'inferno';
 import { Admin, success } from '../../helper/Constants/Constants.js';
+
 export default class AdminLayout extends Component {
     constructor(props) {
         super(props);

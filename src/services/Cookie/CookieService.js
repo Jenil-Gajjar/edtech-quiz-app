@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { JWT_TOKEN_STORAGE_KEY } from "../helper/Constants/Constants.js";
+import { JWT_TOKEN_STORAGE_KEY } from "../../helper/Constants/Constants.js";
 const CookieService = {
   setAuthCookie(token) {
     const defaultOptions = {

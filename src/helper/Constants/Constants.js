@@ -8,3 +8,5 @@ export const error = "error";
 
 export const JWT_TOKEN_STORAGE_KEY = "AuthToken";
 export const TOASTR_STORAGE_KEY = "toastMessage";
+
+export const apiUrl = "http://localhost:5051/api";

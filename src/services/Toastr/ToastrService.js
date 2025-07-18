@@ -4,8 +4,8 @@ import {
   success,
   TOASTR_STORAGE_KEY,
   warning,
-} from "../helper/Constants/Constants.js";
-import toastr from "../helper/Toast/toastr.js";
+} from "../../helper/Constants/Constants.js";
+import toastr from "../../helper/Toast/toastr.js";
 
 export default class ToastrService {
   static setToast(type, message) {

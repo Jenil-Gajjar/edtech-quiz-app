@@ -1,5 +1,5 @@
-import CookieService from "./CookieService.js";
-import JwtService from "./JwtService.js";
+import CookieService from "../Cookie/CookieService.js";
+import JwtService from "../Jwt/JwtService.js";
 
 const AuthService = {
   isAuthenticated() {

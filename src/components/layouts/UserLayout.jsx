@@ -1,8 +1,8 @@
 import '../../assets/css/styles.css'
 
 import Logo from '../../assets/images/favicon-light.png'
-import ToastrService from '../../services/ToastrService.js';
-import AuthService from '../../services/AuthorizationService.js';
+import AuthService from '../../services/Authorization/AuthorizationService.js';
+import ToastrService from '../../services/Toastr/ToastrService.js';
 import ErrorPage from '../shared/ErrorPage.jsx';
 import status from 'http-status';
 

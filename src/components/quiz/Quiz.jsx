@@ -1,4 +1,4 @@
-export function     Quiz() {
+export function Quiz() {
     return (
         <>
             <h1>Quiz </h1>
