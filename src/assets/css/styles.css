@@ -53,6 +53,35 @@
   color: var(--purple);
   text-decoration: none;
 }
+.header-text {
+  font-size: 2.9rem;
+  font-weight: 600;
+  color: var(--purple);
+}
+.CorrectOption {
+  background-color: #9891e7 !important;
+  color: white !important;
+  border-radius: 0.375rem;
+}
+.purple-button {
+  background-color: var(--purple) !important;
+  color: white !important;
+  border: 0;
+  padding: 0.7rem;
+  border-radius: 0.375rem;
+}
+.purple-hover-button {
+  background-color: white !important;
+  color: var(--purple) !important;
+  border: 1px solid var(--purple);
+  padding: 0.68rem;
+  border-radius: 0.375rem;
+}
+
+.purple-hover-button:hover {
+  background-color: var(--purple) !important;
+  color: white !important;
+}
 .sidebar {
   background-color: var(--purple);
   height: 100vh;

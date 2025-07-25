@@ -1,7 +1,7 @@
 export function Quiz() {
     return (
         <>
-            <h1>Quiz </h1>
+            <h1>Quiz</h1>
         </>
     )
 }

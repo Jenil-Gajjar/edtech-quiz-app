@@ -35,28 +35,28 @@ export default class AdminLayout extends Component {
     }
     mappings = {
         'dashboard': {
-            component: <Question />,
-            icon: <i class="bi bi-grid fs-5"></i>,
+            component: <Quiz />,
+            icon: <i className="bi bi-grid fs-5"></i>,
             text: 'Dasboard'
         },
         'question': {
-            component: <Question />,
-            icon: <i class="bi bi-question-circle fs-5"></i>,
+            component: <Question {...this.props} />,
+            icon: <i className="bi bi-question-circle fs-5"></i>,
             text: 'Question'
         },
         'quiz': {
             component: <Quiz />,
-            icon: <i class="bi bi-clipboard-check fs-5"></i>,
+            icon: <i className="bi bi-clipboard-check fs-5"></i>,
             text: 'Quiz'
         },
         'user-activity': {
             component: <Quiz />,
-            icon: <i class="bi bi-people fs-5"></i>,
+            icon: <i className="bi bi-people fs-5"></i>,
             text: 'User Activity'
         },
         'logout': {
-            component: <Quiz />,
-            icon: <i class="bi bi-box-arrow-left fs-5"></i>,
+            component: null,
+            icon: <i className="bi bi-box-arrow-left fs-5"></i>,
             text: 'Logout'
         }
     };
@@ -65,8 +65,8 @@ export default class AdminLayout extends Component {
         this.setState({
             activeComponent: path
         })
-
         this.props.history.push(`/admin/${path}`);
+        window.location.replace(`/admin/${path}`)
     }
 
     renderContent = () => {
@@ -90,7 +90,6 @@ export default class AdminLayout extends Component {
 
 
     render() {
-
         if (this.state.error) {
             const { status, message } = this.state.error;
             return (
@@ -126,7 +125,7 @@ export default class AdminLayout extends Component {
                             }
                         </ul>
                     </div>
-                    <div className='col main-content '>
+                    <div className='col main-content overflow-hidden'>
                         {this.renderContent()}
                     </div>
                 </div>

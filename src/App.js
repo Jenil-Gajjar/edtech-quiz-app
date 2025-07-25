@@ -24,6 +24,7 @@ export default function App() {
               <SignUpComponent />
             </Auth>
           </Route>
+
           <Route path="/admin/:component" component={AdminLayout} />
           <Route path="/user/:component" component={UserLayout} />
           <Route path="*" component={ErrorPage} />

@@ -139,7 +139,6 @@ export function SignUpComponent() {
         var email = formData.get('Email').trim()
         var password = formData.get('Password').trim()
 
-
         if (!username) {
             ErrorHandler('UsernameErrorMessage', 'Username is required');
             return;

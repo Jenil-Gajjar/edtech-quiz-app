@@ -37,17 +37,17 @@ export default class UserLayout extends Component {
     mappings = {
         'dashboard': {
             component: <Quiz />,
-            icon: <i class="bi bi-grid fs-5"></i>,
+            icon: <i className="bi bi-grid fs-5"></i>,
             text: 'Dasboard'
         },
         'user-quiz': {
             component: <Quiz />,
-            icon: <i class="bi bi-clipboard-check fs-5"></i>,
+            icon: <i className="bi bi-clipboard-check fs-5"></i>,
             text: 'Quiz'
         },
         'logout': {
             component: null,
-            icon: <i class="bi bi-box-arrow-left fs-5"></i>,
+            icon: <i className="bi bi-box-arrow-left fs-5"></i>,
             text: 'Logout'
         }
     };
